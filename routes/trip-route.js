@@ -4,6 +4,8 @@ const Trip = require('../models/trip-model');
 const sharp = require('sharp');
 const fs = require('fs');
 
+let config = process.env.NODE_ENV === 'production'
+
 const _storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/') //저장 위치
@@ -41,7 +43,7 @@ router.post('/list/more', (req, res) => {
 });
 
 router.get('/upload', authCheck, (req, res) => {
-    res.redirect('http://localhost:8080/write?googleid=' + req.user.googleId + '&username=' + req.user.username);
+    res.redirect(config ? 'https://show-your-trip.netlify.com/write?googleid=' : 'http://localhost:8080/write?googleid=' + req.user.googleId + '&username=' + req.user.username);
 });
 
 router.post('/upload', upload.single('userfile'), function(req, res){
