@@ -64,9 +64,9 @@ http.createServer(app).listen(process.env.PORT || port1, function(){
     console.log("Http server listening");
 });
 
-https.createServer(options, app).listen(process.env.PORT || port2, function(){  
-    console.log("Https server listening");
-});
+// https.createServer(options, app).listen(process.env.PORT || port2, function(){  
+//     console.log("Https server listening");
+// });
 
 // app.get('/upload', function(req, res){
 //     res.render('upload');
