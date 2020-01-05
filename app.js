@@ -33,8 +33,8 @@ const fs = require('fs');
 const cors = require('cors');
 
 const options = {  
-    key: fs.readFileSync('key/private.pem'),
-    cert: fs.readFileSync('key/public.pem')
+    key: fs.readFileSync('key/server.key', 'utf8'),
+    cert: fs.readFileSync('key/server.cert', 'utf8')
 };
 
 const port1 = 3000;  
