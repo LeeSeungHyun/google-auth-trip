@@ -33,8 +33,8 @@ const fs = require('fs');
 const cors = require('cors');
 
 const options = {  
-    key: fs.readFileSync('key/private.pem'),
-    cert: fs.readFileSync('key/public.pem')
+    key: fs.readFileSync('key/server.key', 'utf8'),
+    cert: fs.readFileSync('key/server.cert', 'utf8')
 };
 
 const port1 = 3000;  
@@ -60,14 +60,13 @@ app.use(express.static('uploads'));
 app.use('/auth', authRoutes);
 app.use('/trip', tripRoutes);
 
-http.createServer(app).listen(port1, function(){  
-    console.log("Http server listening on port " + port1);
+http.createServer(app).listen(process.env.PORT || port1, function(){  
+    console.log("Http server listening");
 });
 
-https.createServer(options, app).listen(port2, function(){  
-    console.log("Https server listening on port " + port2);
-});
-
+// https.createServer(options, app).listen(process.env.PORT || port2, function(){  
+//     console.log("Https server listening");
+// });
 
 // app.get('/upload', function(req, res){
 //     res.render('upload');
